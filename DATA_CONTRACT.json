@@ -1,0 +1,25 @@
+{
+  "version": "0.1",
+  "source": "Public Ubisoft Rainbow Six esports website: pageData from __NEXT_DATA__",
+  "scope": "2026/27 season through snapshot; regional Kickoff, Stage 1, Stage 2, Salt Lake City Major, EWC. SI2026 is excluded because it belongs to season2025/26.",
+  "tier1_rule": "Regional league participation, not world ranking. All regional participants are retained, including promoted and unsigned teams; international participants are retained as well.",
+  "team_identity": "Ubisoft team.id; organization names are observations, not stable primary keys. Different team IDs are never merged automatically.",
+  "match_grain": "One series, including BO1 and BO3.",
+  "map_grain": "One played game inside a series; completed games only.",
+  "round_grain": "One physical round, unique round_id. Attacker, defender and winner IDs are preserved.",
+  "team_round_grain": "Two perspectives per physical round, unique (round_id, team_id). Do not count rows in this table as physical rounds.",
+  "player_stats_grain": "Player/team/map, not player/round. All numeric values and nulls from the source are preserved.",
+  "null_policy": "An unavailable value stays null; zero is only preserved when supplied by the source. No estimates fill missing site, first kill or plant events.",
+  "raw_codes": "status_code, result_code, win_method_code, source_data_validity and map-selection codes remain source integers. Finished status=3 was verified against a public match page. Other enums are not guessed.",
+  "time": "UTC ISO8601 source timestamps; fetched_at_utc identifies the retrieval, not the match date.",
+  "metrics": {
+    "win_rate": "won observed rounds / observed rounds in the selected context",
+    "overtime_round_win_rate": "won rounds with round_number>12 / observed rounds with round_number>12. Source isOvertime is unreliable and retained separately as source_is_overtime.",
+    "overtime_rule_source": "https://www.ubisoft.com/en-gb/esports/rainbow-six/siege/page/5MuwHkMD3n6XESfqg4lY3M (official 2026 format: overtime starts after 6-6)",
+    "last_n_maps": "Select distinct played game_ids ordered by match date and map index before filtering rounds.",
+    "first_kill_conversion": "Unavailable: map-level opening kills cannot establish round-level conversion.",
+    "site_win_rate": "Unavailable: bombsite not present in observed public round payload."
+  },
+  "coverage": "Discovery exhausts all phase pages in the discovered competitions. This is coverage of the public source, not proof that the organizer recorded every real-world match/event correctly.",
+  "quality": "Raw payloads are retained alongside issues. Check quality_report.json and collection_status.json before trusting metrics or making a completeness claim."
+}
